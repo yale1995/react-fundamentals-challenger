@@ -1,0 +1,23 @@
+.taskListHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.taskListHeader > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.taskListHeader > div > p {
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.createdTasks > p {
+  color: var(--blue);
+}
+
+.finishedTasks > p {
+  color: var(--purple);
+}
