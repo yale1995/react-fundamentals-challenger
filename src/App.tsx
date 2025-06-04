@@ -29,6 +29,15 @@ export const App = () => {
     setTasks(remainingTasks)
   }
 
+
+  const checkedTasksCount = tasks.reduce((prevValue, currentTask) => {
+    if(currentTask.isChecked) {
+      return prevValue + 1
+    }
+
+    return prevValue
+  }, 0)
+
   return (
     <main>
       <Header />
@@ -37,7 +46,7 @@ export const App = () => {
         <AddNewTaskForm onSubmit={handleAddNewTask} />
 
         <div className={styles.container}>
-          <TaskListHeader tasksCount={5} doneTasksCount={2} />
+          <TaskListHeader tasksCount={tasks.length} doneTasksCount={checkedTasksCount} />
 
           <ul className={styles.taskList}>
             {tasks.map((task) => (
