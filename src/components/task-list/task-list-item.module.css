@@ -33,6 +33,7 @@
   border-radius: 100%;
   height: 1.125rem;
   width: 1.125rem;
+  cursor: pointer;
 
   transition: 0.2s all;
 

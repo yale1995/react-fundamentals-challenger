@@ -9,32 +9,38 @@ export type Task = {
 
 interface TaskListItemProps {
   data: Task;
-  onDeleteTask: (taskId: number) => void
+  onDelete: (taskId: number) => void;
+  onToggleStatus: (taskId: number) => void;
 }
 
-export const TaskListItem = ({ data, onDeleteTask }: TaskListItemProps) => {
-  
-  function handleDeleteTask() {
-    onDeleteTask(data.id)
+export const TaskListItem = ({
+  data,
+  onDelete,
+  onToggleStatus,
+}: TaskListItemProps) => {
+  function handleDelete() {
+    onDelete(data.id);
   }
 
+  function handleToggleStatus() {
+    onToggleStatus(data?.id);
+  }
 
-    const checkboxCheckedClassname = data.isChecked
-    ? styles['checkbox-checked']
-    : styles['checkbox-unchecked']
-
+  const checkboxCheckedClassname = data.isChecked
+    ? styles["checkbox-checked"]
+    : styles["checkbox-unchecked"];
 
   const paragraphCheckedClassname = data.isChecked
-    ? styles['paragraph-checked']
-    : ''
+    ? styles["paragraph-checked"]
+    : "";
 
   return (
     <li className={styles.taskListItem}>
       <div>
-        <label>
+        <label htmlFor="checkbox" onClick={handleToggleStatus}>
           <input type="checkbox" />
           <span className={`${styles.checkbox} ${checkboxCheckedClassname}`}>
-            {data.isChecked && <Check size={12} />}
+            {data.isChecked && <Check size={12} color="#fff" />}
           </span>
 
           <p className={`${styles.paragraph} ${paragraphCheckedClassname}`}>
@@ -43,8 +49,8 @@ export const TaskListItem = ({ data, onDeleteTask }: TaskListItemProps) => {
         </label>
       </div>
 
-      <button onClick={handleDeleteTask}>
-        <Trash size={16}  />
+      <button onClick={handleDelete}>
+        <Trash size={16} />
       </button>
     </li>
   );
