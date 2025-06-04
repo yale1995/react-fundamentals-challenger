@@ -5,6 +5,7 @@ import { Header } from "./components/header";
 import { useState } from "react";
 import { TaskListHeader } from "./components/task-list/task-list-header";
 import { TaskListItem, type Task } from "./components/task-list/task-list-item";
+import { TaskListEmpty } from "./components/task-list/task-list-empty";
 
 export const App = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -65,14 +66,14 @@ export const App = () => {
           />
 
           <ul className={styles.taskList}>
-            {tasks.map((task) => (
+            {tasks.length > 0 ? tasks.map((task) => (
               <TaskListItem
                 key={task.id}
                 data={task}
                 onDelete={deleteTask}
                 onToggleStatus={toggleTaskStatus}
-              />
-            ))}
+              />  
+            ) ): <TaskListEmpty/>}
           </ul>
         </div>
       </section>
